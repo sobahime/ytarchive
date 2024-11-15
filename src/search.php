@@ -42,8 +42,6 @@ if (sizeof($columns) != 0) {
                 ts_rank($document, $query) rank
             WHERE ($document) @@ $query
             ORDER BY rank DESC";
-    echo $sql;
-    echo "\n";
     $sth = $pdo->prepare($sql);
     $sth->execute(['query' => $_REQUEST['q']]);
     $data = $sth->fetchAll();
