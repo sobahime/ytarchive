@@ -99,3 +99,10 @@ a {
     transform: translate(calc(-50% + 4px), 0);
   }
 }
+
+.video_metadata {
+    background-color: rgba(0.1,0.1,0.1,0.8);
+}
+.back {
+    background-color: rgba(0.1,0.1,0.1,0.8);
+}

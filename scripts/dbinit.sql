@@ -25,6 +25,5 @@ CREATE TABLE video (
     fulltitle               TEXT,
     fps                     INT,
     aspect_ratio            FLOAT,
-    ext                     TEXT,
-    thumbnail_ext           TEXT
+    ext                     TEXT
 );
