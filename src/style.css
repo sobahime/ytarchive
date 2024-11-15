@@ -109,14 +109,16 @@ a {
     height: 100%;
 }
 .video_link {
-    backdrop-filter: brightness(70%) blur(2px);
+    backdrop-filter: blur(2px);
 	display: flex;
     flex-direction: column;
 	padding: 4px;
     margin: 0.2em;
     text-align: center;
-    width: 32vh;
+    width: 30vh;
     height: 26vh;
+    border: 2px solid black;
+    color: black;
 }
 .thumbnail {
     text-align: center;
@@ -125,7 +127,28 @@ a {
 	object-fit: contain;
 }
 .video_link_meta {
-    padding: 0;
+    display: block;
+    backdrop-filter: blur(2px) brightness(200%);
+}
+.title {
+    color: black;
+    text-shadow: 1px 1px 0px white;
+}
+.channel {
+    display: block;
+    text-align: left;
+    font-size: 1em;
+    text-shadow: 1px 1px 0px white;
+    color: black;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-style: italic;
+}
+.date {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    vertical-align: text-bottom;
 }
 .titre {
     font-family: "Times New Roman", serif;
@@ -153,6 +176,10 @@ a {
 .titretexte.B {
     color: #0000ff;
     mix-blend-mode: screen;
+}
+.indexlink {
+    color: rgba(1, 0, 1, 0);
+    opacity: 0;
 }
 .titre:hover .R {
   animation: shake 0.82s cubic-bezier(.36,.07,.80,.97) both infinite;
@@ -189,7 +216,8 @@ a {
 }
 
 .video_metadata {
-    backdrop-filter: brightness(70%) blur(2px);
+    background-color: white;
+    border: 2px solid black;
     width: 72%;
     display: block;
     margin: 0 auto;
@@ -197,6 +225,9 @@ a {
     padding: 4px;
 }
 .back {
+    background-color: black;
+    display: inline;
+    padding: 4px;
 }
 video {
     height: 70vh;
@@ -204,4 +235,13 @@ video {
     margin: 0 auto;
     margin-left: 50%;
     transform: translateX(-50%);
+}
+.video_title {
+    font-size: 2em;
+    color: black;
+}
+.description {
+    padding: 4px;
+    font-size: 0.8em;
+    background-color: black;
 }
