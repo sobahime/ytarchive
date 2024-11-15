@@ -9,6 +9,7 @@ require_once 'database.php';
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <img src="bgpony.png" alt="bgpony" class="bgpony" />
 <div class="titre maintitre">
     <h1 class="titretexte shadow">YTPMV/音MAD archive</h1>
     <h1 class="titretexte R" >YTPMV/音MAD archive</h1>
@@ -21,8 +22,10 @@ require_once 'database.php';
         <a href="browseyear.php">by year</a>
         <a href="channels">channels</a>
     </div>
-    <input type="search" id="search" name="q"/>
-    <button class="boutonmignon">search</button>
+    <div class="mainsearch">
+        <input type="search" id="search" name="q"/>
+        <button class="boutonmignon">search</button>
+    </div>
     <button type="button" class="cascade">advanced search</button>
     <div class="advanced">
         <h1 class="advancedtitle">search through</h1>
