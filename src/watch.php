@@ -22,7 +22,7 @@ $data = $sth->fetchAll();
 foreach($data as $row) {
     $url_escaped = 'watch.php?v=' . htmlspecialchars($row['id']);
     $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
-    echo '<video controls width="640" poster="content/'
+    echo '<video controls poster="content/'
         . htmlspecialchars($row['id']) . '.webp">';
     echo '<source src="content/'
         . htmlspecialchars($row['id']) . '.'
@@ -35,6 +35,8 @@ foreach($data as $row) {
     echo '<span class="date">' . htmlspecialchars(date("Y/m/d", $row['timestamp'])) . '</span>';
     echo '<p class="description">' . htmlspecialchars($row['description']) . '</p>';
     echo '</div>';
+    echo '<style type="text/css">';
+//    echo 'video {aspect-ratio: . }'
 //	echo '</a>';
 }
 ?>

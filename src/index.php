@@ -9,13 +9,18 @@ require_once 'database.php';
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-<div class="titre">
+<div class="titre maintitre">
     <h1 class="titretexte shadow">YTPMV/音MAD archive</h1>
     <h1 class="titretexte R" >YTPMV/音MAD archive</h1>
     <h1 class="titretexte G">YTPMV/音MAD archive</h1>
     <h1 class="titretexte B">YTPMV/音MAD archive</h1>
 </div>
 <div class="menu">
+    <div class="menuhead">
+        <a href="browse.php">browse</a>
+        <a href="browseyear.php">by year</a>
+        <a href="channels">channels</a>
+    </div>
     <input type="search" id="search" name="q"/>
     <button class="boutonmignon">search</button>
     <button type="button" class="cascade">advanced search</button>

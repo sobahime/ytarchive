@@ -4,10 +4,17 @@ html {
 }
 body {
 	font-family: sans-serif;
-    background-image: url(noise.jpg);
-    background-size: cover;
+    background-image: url(noise.gif);
+    background-size: contain;
+    background-size: 50%;
     color: white;
     height: 95%;
+}
+.maintitre {
+    padding-top: 20vh;
+}
+#search {
+    width: 70%;
 }
 .advancedtitle {
     padding: 4px;
@@ -16,6 +23,8 @@ body {
 }
 div.checkboxes {
     text-align: left;
+    width: 50%;
+    transform: translateX(-13%);
 }
 .checkboxes {
     padding-left: 50%;
@@ -27,6 +36,18 @@ div.checkboxes {
     left: 50%;
     top: 50vh;
     transform: translate(-50%, -50%);
+    backdrop-filter: invert(100%) blur(2px);
+    border: 2px solid black;
+}
+.checkboxes label {
+    text-shadow: 2px 2px 2px white;
+}
+.menuhead {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    text-shadow: 2px 2px 2px black;
 }
 .cascade {
     cursor: pointer;
@@ -55,7 +76,7 @@ div.checkboxes {
     color: black;
     overflow: hidden;
     border: 1px black;
-    background-color: white;
+    backdrop-filter: blur(2px) brightness(170%);
 }
 .contenant {
     height: 88vh;
@@ -76,7 +97,7 @@ a {
     height: 100%;
 }
 .video_link {
-    background-color: rgba(0.1,0.1,0.1,0.8);
+    backdrop-filter: brightness(70%) blur(2px);
 	display: flex;
     flex-direction: column;
 	padding: 4px;
@@ -156,8 +177,19 @@ a {
 }
 
 .video_metadata {
-    background-color: rgba(0.1,0.1,0.1,0.8);
+    backdrop-filter: brightness(70%) blur(2px);
+    width: 72%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 4px;
 }
 .back {
-    background-color: rgba(0.1,0.1,0.1,0.8);
+}
+video {
+    height: 70vh;
+    display: block;
+    margin: 0 auto;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
