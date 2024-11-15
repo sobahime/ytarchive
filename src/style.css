@@ -9,6 +9,54 @@ body {
     color: white;
     height: 95%;
 }
+.advancedtitle {
+    padding: 4px;
+    margin: 0;
+    font-size: 1em;
+}
+div.checkboxes {
+    text-align: left;
+}
+.checkboxes {
+    padding-left: 50%;
+}
+.menu {
+    width: 50vh;
+    position: fixed;
+    text-align: center;
+    left: 50%;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+}
+.cascade {
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    background-color: white;
+    border: none;
+}
+.boutonmignon {
+    border: none;
+    color: black;
+    background-color: white;
+}
+.boutonmignon:hover {
+    background-color: black;
+    color: white;
+}
+.active, .cascade:hover {
+    background-color: black;
+    color: white;
+}
+.advanced {
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+    color: black;
+    overflow: hidden;
+    border: 1px black;
+    background-color: white;
+}
 .contenant {
     height: 88vh;
 }
@@ -47,6 +95,7 @@ a {
     padding: 0;
 }
 .titre {
+    font-family: "Times New Roman", serif;
     width: 100%;
     height: 10%;
 }
@@ -59,16 +108,18 @@ a {
     padding: 0;
     font-size: 4em;
     text-align: center;
-    mix-blend-mode: screen;
 }
 .titretexte.R {
     color: #ff0000;
+    mix-blend-mode: screen;
 }
 .titretexte.G {
     color: #00ff00;
+    mix-blend-mode: screen;
 }
 .titretexte.B {
     color: #0000ff;
+    mix-blend-mode: screen;
 }
 .titre:hover .R {
   animation: shake 0.82s cubic-bezier(.36,.07,.80,.97) both infinite;
@@ -81,6 +132,10 @@ a {
 .titre:hover .B {
   animation: shake 0.60s cubic-bezier(0,.07,.19,.97) both infinite;
   transform: translate(-50%, 0);
+}
+.titretexte.shadow {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0px 0px 10px black;
 }
 @keyframes shake {
   10%, 90% {

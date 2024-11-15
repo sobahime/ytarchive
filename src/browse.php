@@ -10,6 +10,7 @@ require_once 'database.php';
     </head>
     <body>
 <div class="titre">
+    <h1 class="titretexte shadow">YTPMV/音MAD archive</h1>
     <h1 class="titretexte R" >YTPMV/音MAD archive</h1>
     <h1 class="titretexte G">YTPMV/音MAD archive</h1>
     <h1 class="titretexte B">YTPMV/音MAD archive</h1>
