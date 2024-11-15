@@ -33,7 +33,7 @@ foreach($data as $row) {
     echo '<strong>' . htmlspecialchars($row['title']) . '</strong><br/>';
     echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
     echo '<span class="date">' . htmlspecialchars(date("Y/m/d", $row['timestamp'])) . '</span>';
-    echo '<p class="description">' . htmlspecialchars($row['description']) . '</p>';
+    echo '<p class="description">' . nl2br(htmlspecialchars($row['description'])) . '</p>';
     echo '</div>';
     echo '<style type="text/css">';
 //    echo 'video {aspect-ratio: . }'
