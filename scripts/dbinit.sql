@@ -11,7 +11,7 @@ CREATE TABLE video (
     duration                INT,
     view_count              INT,
     webpage_url             TEXT,
-    -- tags table
+    tags                    TEXT,
     -- subtitles table
     comment_count           INT,
     like_count              INT,
