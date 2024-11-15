@@ -11,7 +11,7 @@ require_once 'database.php';
     <body>
         <p class="back"><a href="#" onclick="history.back();">Back</a></p>
 <?php
-$sql = 'SELECT id, title, channel, timestamp, channel_id, ext,
+$sql = 'SELECT id, view_count, title, channel, timestamp, channel_id, ext,
             description
         FROM video
         WHERE id = :id;';
@@ -21,7 +21,8 @@ $data = $sth->fetchAll();
 
 foreach($data as $row) {
     $url_escaped = 'watch.php?v=' . htmlspecialchars($row['id']);
-    $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
+   // $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
+    $url_channel_escaped = 'search.php?q=' . htmlspecialchars(urlencode('"' . $row['channel'] . '"')) . '&channel=on';
     echo '<video controls poster="content/'
         . htmlspecialchars($row['id']) . '.webp">';
     echo '<source src="content/'
@@ -31,6 +32,7 @@ foreach($data as $row) {
     echo '</video>';
     echo '<div class="video_metadata">';
     echo '<strong class="video_title">' . htmlspecialchars($row['title']) . '</strong><br/>';
+    echo '<p class="view_count">' . htmlspecialchars($row['view_count']) . ' views</p>';
     echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
     echo '<span class="date">' . htmlspecialchars(date("Y/m/d", $row['timestamp'])) . '</span>';
     echo '<p class="description">' . nl2br(htmlspecialchars($row['description'])) . '</p>';

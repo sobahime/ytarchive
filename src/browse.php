@@ -42,7 +42,8 @@ $data = $sth->fetchAll();
 
 foreach($data as $row) {
     $url_escaped = 'watch.php?v=' . htmlspecialchars($row['id']);
-    $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
+   // $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
+    $url_channel_escaped = 'search.php?q=' . htmlspecialchars(urlencode('"' . $row['channel'] . '"')) . '&channel=on';
     echo '<div class="video_link">';
     echo '<a href="' . $url_escaped . '">';
     echo '<img class="thumbnail" src="content/'
