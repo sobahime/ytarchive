@@ -6,6 +6,7 @@ require_once 'database.php';
     <head>
         <meta charset="utf-8">
         <title>media</title>
+        <link rel="icon" type="image/png" href="/favicon.png">
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>

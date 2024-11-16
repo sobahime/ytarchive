@@ -7,6 +7,7 @@ require_once 'database.php';
         <meta charset="utf-8">
         <title>media</title>
         <link rel="stylesheet" href="style.css" />
+        <link rel="icon" type="image/png" href="/favicon.png">
         <style type="text/css">
            body {
             background-image: url(noisebrowse.gif);
@@ -55,7 +56,7 @@ foreach($data as $row) {
     echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
     echo '<span class="date">' . htmlspecialchars(date("Y/m/d", $row['timestamp'])) . '</span>';
 //	echo '</a>';
-    echo '</section></div><br/>';
+    echo '</section></div>';
 }
 ?>
 
