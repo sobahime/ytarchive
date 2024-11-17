@@ -253,14 +253,32 @@ a {
   }
 }
 
-.video_metadata {
+.video_metadata, .comment_container {
     background-color: white;
     border: 2px solid black;
+    color: black;
     width: 72%;
     display: block;
     margin: 0 auto;
     margin-top: 30px;
     padding: 4px;
+}
+.comment {
+    display: flex;
+    padding: 4px;
+}
+.comment_profile_picture {
+    width: 64px;
+    height: 64px;
+}
+.comment_text_section {
+    margin-left: 4px;
+}
+.comment_text {
+    white-space: pre-line;
+}
+.comment a {
+    color: blue;
 }
 .back {
     background-color: black;
@@ -282,6 +300,7 @@ video {
     padding: 4px;
     font-size: 0.8em;
     background-color: black;
+    color: white;
     margin-top: 0;
 }
 .view_count {
