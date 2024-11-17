@@ -35,13 +35,19 @@ require_once 'database.php';
 <div class="contenant">
 <div class="video_list">
 <?php
-$sql = 'SELECT id, title, channel, timestamp, channel_id
+$sql = 'SELECT id, title, channel, upload_date, channel_id
         FROM video;';
 $sth = $pdo->prepare($sql);
 $sth->execute();
 $data = $sth->fetchAll();
 
 foreach($data as $row) {
+    $date = $row['upload_date'];
+    if (isset($date) && strlen($date >= 8)) {
+        $date = substr($date, 0, 4) . '/'
+                . substr($date, 4, 2) . '/'
+                . substr($date, 6, 2);
+    }
     $url_escaped = 'watch.php?v=' . htmlspecialchars($row['id']);
    // $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
     $url_channel_escaped = 'search.php?q=' . htmlspecialchars(urlencode('"' . $row['channel'] . '"')) . '&channel=on';
@@ -54,7 +60,7 @@ foreach($data as $row) {
     echo '<section class="video_link_meta">';
     echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['title']) . "</strong><br/></a>";
     echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
-    echo '<span class="date">' . htmlspecialchars(date("Y/m/d", $row['timestamp'])) . '</span>';
+    echo '<span class="date">' . htmlspecialchars($date) . '</span>';
 //	echo '</a>';
     echo '</section></div>';
 }
