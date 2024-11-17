@@ -27,3 +27,23 @@ CREATE TABLE video (
     aspect_ratio            FLOAT,
     ext                     TEXT
 );
+
+CREATE TABLE comment (
+    id                      TEXT PRIMARY KEY,
+    parent                  TEXT,
+    text                    TEXT,
+    like_count              INT,
+    author_id               TEXT,
+    author                  TEXT,
+    author_thumbnail        TEXT,
+    author_is_uploader      BOOLEAN,
+    author_is_verified      BOOLEAN,
+    author_url              TEXT,
+    is_favorited            BOOLEAN,
+    _time_text              TEXT,
+    timestamp               INT,
+    is_pinned               BOOLEAN,
+    video_id                TEXT,
+    FOREIGN KEY (parent) REFERENCES comment(id),
+    FOREIGN KEY (video_id) REFERENCES video(id)
+);
