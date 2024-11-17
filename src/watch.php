@@ -48,9 +48,31 @@ foreach($data as $row) {
 //    echo 'video {aspect-ratio: . }'
 //	echo '</a>';
 }
+
+$sql2 = 'SELECT COUNT(*)
+        FROM comment
+        WHERE video_id = :id;';
+$sth2 = $pdo->prepare($sql2);
+$sth2->execute(['id' => $_REQUEST['v']]);
+$data2 = $sth2->fetchAll();
+
+
     ?>
 
-    <div id="comments" class="comment_container">
+    <div class="comment_container">
+        <div class="comment_header">
+            <?php echo $data2[0][0]; ?> comments ·
+            <select class="comment_option" id="comments_sortby">
+                <option default value="like_count">Sort by likes</option>
+                <option value="timestamp">Sort by date</option>
+                <option value="reply_count">Sort by reply count</option>
+            </select>
+            <select class="comment_option" id="comments_sortorder">
+                <option default value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+            </select>
+        </div>
+        <div id="comments"></div>
     </div>
     <script>
         function fetch_comments(container, parent=null, sortby=null, sortorder=null) {
@@ -135,7 +157,21 @@ foreach($data as $row) {
                     }
                 });
         }
-        fetch_comments(document.getElementById("comments"));
+
+        function refresh_comments() {
+            let comments = document.getElementById("comments");
+            comments.textContent = "";
+            fetch_comments(comments, null,
+                document.getElementById("comments_sortby").value,
+                document.getElementById("comments_sortorder").value);
+        }
+
+        for (let element of document.getElementsByClassName("comment_option")) {
+            element.addEventListener("change", function(e) {
+                refresh_comments();
+            });
+        }
+        refresh_comments();
     </script>
 
     </body>
