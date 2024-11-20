@@ -75,10 +75,15 @@ $data2 = $sth2->fetchAll();
         <div id="comments"></div>
     </div>
     <script>
-        function fetch_comments(container, parent=null, sortby=null, sortorder=null) {
+        function fetch_comments(container, parent=null, sortby=null, sortorder=null, page=0, clear=true) {
             let loading_gif = document.createElement("img");
+            loading_gif.classList.add("loading_gif");
             loading_gif.src = "loading.gif";
-            container.append(loading_gif);
+            if (clear) {
+                container.insertBefore(loading_gif, container.firstChild);
+            } else {
+                container.append(loading_gif);
+            }
             const urlParams = new URLSearchParams(window.location.search);
             let url = new URL("api/comments.php", window.location);
             url.searchParams.append("video_id", urlParams.get("v"));
@@ -89,12 +94,19 @@ $data2 = $sth2->fetchAll();
                 url.searchParams.append("sortby", sortby);
             }
             if (sortorder !== null) {
-                url.searchParams.append("sortorder", sortorder)
+                url.searchParams.append("sortorder", sortorder);
+            }
+            if (page !== null) {
+                url.searchParams.append("page", page);
             }
             fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
-                    loading_gif.remove();
+                    if (clear) {
+                        container.textContent = "";
+                    } else {
+                        loading_gif.remove();
+                    }
                     for (let comment of data) {
                         let element = document.createElement("div");
                         element.classList.add("comment");
@@ -155,12 +167,26 @@ $data2 = $sth2->fetchAll();
 
                         container.append(element);
                     }
+
+                    if (data.length > 0) {
+                        let load_more = document.createElement("a");
+                        load_more.classList.add("view_comments");
+                        load_more.append("Load more...");
+                        load_more.href = "#";
+                        load_more.addEventListener("click", function(e) {
+                            fetch_comments(container, parent, sortby, sortorder, page + 1, false);
+                            e.preventDefault();
+                            this.remove();
+                        });
+
+                        container.append(load_more);
+                    }
                 });
         }
 
         function refresh_comments() {
             let comments = document.getElementById("comments");
-            comments.textContent = "";
+            //comments.textContent = "";
             fetch_comments(comments, null,
                 document.getElementById("comments_sortby").value,
                 document.getElementById("comments_sortorder").value);

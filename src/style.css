@@ -277,7 +277,7 @@ a {
 .comment_text {
     white-space: pre-line;
 }
-.comment a {
+a.view_comments {
     color: blue;
 }
 .back {

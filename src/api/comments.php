@@ -25,6 +25,12 @@ if (isset($_REQUEST['sortorder'])) {
         $sortorder = "DESC";
     }
 }
+$page = 0;
+if (isset($_REQUEST['page'])) {
+    $page = (int) $_REQUEST['page'];
+}
+$page_size = 10;
+$offset = $page_size * $page;
 $sql = "
 SELECT
     *,
@@ -32,7 +38,9 @@ SELECT
 FROM comment p
 WHERE video_id = :video_id
 AND $parent_clause
-ORDER BY $sortby $sortorder;
+ORDER BY $sortby $sortorder
+LIMIT $page_size
+OFFSET $offset;
 ";
 //echo $sql; exit(0);
 $sth = $pdo->prepare($sql);
