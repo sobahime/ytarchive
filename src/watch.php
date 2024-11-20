@@ -65,7 +65,6 @@ $data2 = $sth2->fetchAll();
             <select class="comment_option" id="comments_sortby">
                 <option default value="like_count">Sort by likes</option>
                 <option value="timestamp">Sort by date</option>
-                <option value="reply_count">Sort by reply count</option>
             </select>
             <select class="comment_option" id="comments_sortorder">
                 <option default value="desc">Descending</option>

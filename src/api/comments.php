@@ -13,8 +13,7 @@ if (isset($_REQUEST['parent'])) {
 if (isset($_REQUEST['sortby'])
     && in_array($_REQUEST['sortby'], [
         'like_count',
-        'timestamp',
-        'reply_count'
+        'timestamp'
     ])) {
         $sortby = $_REQUEST['sortby'];
     }
