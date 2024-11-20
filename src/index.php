@@ -48,6 +48,7 @@ require_once 'database.php';
                     <input type="checkbox" id="description" name="description" />
                     <label for="description">description</label>
                 </div>
+                <!--
                 <div>
                     <input type="checkbox" id="comments" name="comments" />
                     <label for="comments">comments</label>
@@ -56,7 +57,32 @@ require_once 'database.php';
                     <input type="checkbox" id="date" name="date" />
                     <label for="date">date (yyyy/mm/dd)</label>
                 </div>
+                -->
             </div>
+            <h1 class="advancedtitle">sort by</h1>
+            <div class="checkboxes">
+                <div>
+                    <input type="radio" id="sortrelevance" name="sortby" value="relevance" checked />
+                    <label for="sortrelevance">relevance</label>
+                </div>
+                <div>
+                    <input type="radio" id="sortdate" name="sortby" value="date" />
+                    <label for="sortdate">date</label>
+                </div>
+                <div>
+                    <input type="radio" id="viewcount" name="sortby" value="viewcount" />
+                    <label for="viewcount">view count</label>
+                </div>
+                <div>
+                    <input type="radio" id="commentscount" name="sortby" value="commentscount" />
+                    <label for="commentscount">comments count</label>
+                </div>
+            </div>
+            <label for="order"><h1 class="advancedtitle">order</h1></label>
+            <select name="order" id="order">
+                <option value="ascending">ascending</option>
+                <option value="descending" selected>descending</option>
+            </select>
         </div>
     </form>
 </div>

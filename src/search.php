@@ -52,13 +52,29 @@ if (isset($_REQUEST['description'])) {
 if (sizeof($columns) != 0) {
     $columns = array_map(fn($col) => "to_tsvector('english', video.$col)", $columns);
     $document = join(' || ', $columns);
+    $sortby = "rank";
+    $sortorder = "DESC";
+    if (isset($_REQUEST["sortby"]) && $_REQUEST["sortby"] == "relevance") {
+        $sortby = "rank";
+    } elseif (isset($_REQUEST["sortby"]) && $_REQUEST["sortby"] == "date") {
+        $sortby = "upload_date";
+    } elseif (isset($_REQUEST["sortby"]) && $_REQUEST["sortby"] == "viewcount") {
+        $sortby = "view_count";
+    } elseif (isset($_REQUEST["sortby"]) && $_REQUEST["sortby"] == "commentscount") {
+        $sortby = "comment_count";
+    }
+    if (isset($_REQUEST["order"]) && $_REQUEST["order"] == "ascending") {
+        $sortorder = "ASC";
+    } elseif (isset($_REQUEST["order"]) && $_REQUEST["order"] == "descending") {
+        $sortorder = "DESC";
+    }
     $query = "websearch_to_tsquery('english', :query)";
-    $sql = "SELECT id, title, channel, upload_date, channel_id
+    $sql = "SELECT id, title, channel, upload_date, channel_id, view_count, comment_count
             FROM
                 video,
                 ts_rank($document, $query) rank
             WHERE ($document) @@ $query
-            ORDER BY rank DESC";
+            ORDER BY $sortby $sortorder";
     $sth = $pdo->prepare($sql);
     $sth->execute(['query' => $_REQUEST['q']]);
     $data = $sth->fetchAll();
@@ -103,7 +119,7 @@ $q = htmlspecialchars($q);
             <h1 class="advancedtitle">search through</h1>
             <div class="checkboxes navigo">
                 <div>
-                    <input type="checkbox" id="title" name="title" 
+                    <input type="checkbox" id="title" name="title"
                         <?php
                             if (isset($_GET['title'])) {echo 'checked';}
                         ?> 
@@ -127,13 +143,14 @@ $q = htmlspecialchars($q);
                     <label for="tags">tags</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="description" name="description" 
+                    <input type="checkbox" id="description" name="description"
                         <?php
                             if (isset($_GET['description'])) {echo 'checked';}
                         ?> 
                     />
                     <label for="description">description</label>
                 </div>
+                <!--
                 <div>
                     <input type="checkbox" id="comments" name="comments"
                         <?php
@@ -150,34 +167,43 @@ $q = htmlspecialchars($q);
                     />
                     <label for="date">date (yyyy/mm/dd)</label>
                 </div>
-</div>
+                -->
+            </div>
             <h1 class="advancedtitle">sort by</h1>
             <div class="checkboxes navigo">
                 <div>
-                    <input type="radio" id="sortdate" name="sortby" value="sortdate" 
+                    <input type="radio" id="sortrelevance" name="sortby" value="relevance"
                         <?php
-                            echo ($_REQUEST['sortby'] == 'sortdate') ? 'checked' : '';
-                        ?> 
+                            echo ($_REQUEST['sortby'] == 'relevance') ? 'checked' : '';
+                        ?>
+                    />
+                    <label for="sortrelevance">relevance</label>
+                </div>
+                <div>
+                    <input type="radio" id="sortdate" name="sortby" value="date"
+                        <?php
+                            echo ($_REQUEST['sortby'] == 'date') ? 'checked' : '';
+                        ?>
                     />
                     <label for="sortdate">date</label>
                 </div>
                 <div>
-                    <input type="radio" id="viewcount" name="sortby" value="viewcount" 
+                    <input type="radio" id="viewcount" name="sortby" value="viewcount"
                         <?php
                             echo ($_REQUEST['sortby'] == 'viewcount') ? 'checked' : '';
-                        ?> 
+                        ?>
                     />
                     <label for="viewcount">view count</label>
                 </div>
                 <div>
-                    <input type="radio" id="commentscount" name="sortby" value="commentscount" 
+                    <input type="radio" id="commentscount" name="sortby" value="commentscount"
                         <?php
                             echo ($_REQUEST['sortby'] == 'commentscount') ? 'checked' : '';
-                        ?> 
+                        ?>
                     />
                     <label for="commentscount">comments count</label>
                 </div>
-</div>
+            </div>
             <label for="order"><h1 class="advancedtitle">order</h1></label>
             <select name="order" id="order">
                 <option value="ascending">ascending</option>
