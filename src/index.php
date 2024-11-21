@@ -21,7 +21,7 @@ require_once 'database.php';
     <div class="menuhead">
         <a href="browse.php">browse</a>
         <a href="browseyear.php">by year</a>
-        <a href="channels">channels</a>
+        <a href="browsechannel.php">channels</a>
     </div>
     <form action="search.php" method="get">
         <div class="mainsearch">
