@@ -2,13 +2,13 @@
 
 set -e
 
-PSQL='psql -h localhost ytarchive www-media'
+PSQL='psql -h localhost ytarchive trollmaster'
 
 jq -c 'with_entries(select([.key] | inside([
 	"id", "title", "thumbnail", "description", "channel_id", "channel_url", "duration",
 	"view_count", "webpage_url", "comment_count", "like_count", "channel",
 	"channel_follower_count", "uploader", "uploader_id", "uploader_url", "upload_date",
-	"timestamp", "fulltitle", "fps", "aspect_ratio", "ext", "tags"])))
+	"timestamp", "fulltitle", "fps", "aspect_ratio", "ext", "tags", "epoch"])))
 	| .tags |= join(" ")
 	| if .view_count == null then .view_count = 0 else . end
 	| if .comment_count == null then .comment_count = 0 else . end' -- "$@" \

@@ -25,7 +25,8 @@ CREATE TABLE video (
     fulltitle               TEXT,
     fps                     INT,
     aspect_ratio            FLOAT,
-    ext                     TEXT
+    ext                     TEXT,
+    epoch                   INT
 );
 
 CREATE TABLE comment (

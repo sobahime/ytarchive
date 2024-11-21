@@ -12,7 +12,7 @@ require_once 'database.php';
     <body>
         <p class="back"><a href="#" onclick="history.back();">Back</a></p>
 <?php
-$sql = 'SELECT id, view_count, title, channel, upload_date, channel_id, ext,
+$sql = 'SELECT id, view_count, channel_id, title, epoch, channel, upload_date, channel_id, ext,
             description
         FROM video
         WHERE id = :id;';
@@ -30,6 +30,9 @@ foreach($data as $row) {
     $url_escaped = 'watch.php?v=' . htmlspecialchars($row['id']);
    // $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
     $url_channel_escaped = 'search.php?q=' . htmlspecialchars(urlencode('"' . $row['channel'] . '"')) . '&channel=on';
+    $epoch = $row['epoch'];
+    $snapdate = new DateTime("@$epoch");
+    echo '<h1 class="snapdate">snapshot date : ' . htmlspecialchars($snapdate->format('Y/m/d H:i:s')) . '</h1>';
     echo '<video controls poster="content/'
         . htmlspecialchars($row['id']) . '.webp">';
     echo '<source src="content/'
@@ -39,9 +42,13 @@ foreach($data as $row) {
     echo '</video>';
     echo '<div class="video_metadata">';
     echo '<strong class="video_title">' . htmlspecialchars($row['title']) . '</strong><br/>';
+    echo '<hr class="videobar">';
     echo '<p class="view_count">' . htmlspecialchars($row['view_count']) . ' views</p>';
-    echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
-    echo '<span class="watch_date">' . htmlspecialchars($date) . '</span>';
+    echo '<div class="channelinfo">';
+    echo '<img class="channelpp" src="content/' . htmlspecialchars($row['channel_id']) . '.webp" alt="' . htmlspecialchars($row['channel']) . '"/>';
+    echo '<div><span class="watch_date"><a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . '</a>, ' . htmlspecialchars($date) . '</span><hr class="channelbar"></div>';
+    echo '</div>';
+    echo '';
     echo '<p class="text_description">original description :</p>';
     echo '<p class="description">' . nl2br(htmlspecialchars($row['description'])) . '</p>';
     echo '</div>';
@@ -70,6 +77,7 @@ $data2 = $sth2->fetchAll();
                 <option default value="desc">Descending</option>
                 <option value="asc">Ascending</option>
             </select>
+            <hr class="commentbar"/>
         </div>
         <div id="comments"></div>
     </div>
@@ -122,8 +130,12 @@ $data2 = $sth2->fetchAll();
                         let p1 = document.createElement("div");
                         p1.classList.add("comment_metadata");
 
+                        let hr = document.createElement("hr");
+                        hr.classList.add("commenttextbar");
+
                         let strong = document.createElement("strong");
                         strong.append(comment.author);
+                        p1.append(hr);
                         p1.append(strong);
 
                         p1.append(" · " + comment._time_text);
