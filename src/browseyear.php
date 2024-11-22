@@ -12,16 +12,7 @@ require_once 'database.php';
            body {
             background-image: url(noisebrowse.gif);
             background-position-x: 100%;
-            animation: bgscroll 40s linear infinite; 
 } 
-@keyframes bgscroll {
-    0% {
-    background-position-x: 100%;
-}
-    100% {
-    background-position-x: 0%;
-}
-}
         </style>
     </head>
     <body>
@@ -33,7 +24,7 @@ require_once 'database.php';
     <a href="index.php" class="titretexte indexlink">YTPMV/音MAD archive</a>
 </div>
 <div class="contenant">
-<div class="video_list">
+<div class="year_list">
 <?php
 
 if (isset($_REQUEST["year"])) {
@@ -87,17 +78,16 @@ if (isset($_REQUEST["year"])) {
 
         $url_escaped = 'browseyear.php?year=' . htmlspecialchars($row['upload_year']);
 
-        echo '<div class="video_link">';
-        /*
-        echo '<a href="' . $url_escaped . '">';
-        echo '<img class="thumbnail" src="content/'
-            . htmlspecialchars($row['id']) . '.webp"/>';
-        echo '</a>';
-        */
-        echo '<section class="video_link_meta">';
-        echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['upload_year']) . "</strong><br/></a>";
+        echo '<div class="year_link">';
+        
+       // echo '<a href="' . $url_escaped . '">';
+        
+        echo '<img class="yearthumbnail" src="years/'
+            . htmlspecialchars($row['upload_year']) . '.jpg"/>';
+       // echo '</a>';
+        echo '<a class="titleyear" href="' . $url_escaped . '">' . htmlspecialchars($row['upload_year']) . "</a>";
     //	echo '</a>';
-        echo '</section></div>';
+        echo '</div>';
     }
 }
 

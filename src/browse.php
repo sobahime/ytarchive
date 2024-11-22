@@ -61,7 +61,7 @@ foreach($data as $row) {
     echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['title']) . "</strong><br/></a>";
     echo '<a class="channel " href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
     echo '<span class="date browsedate">' . htmlspecialchars($date) . '</span>';
-    echo '<span class="counts">' . $row['view_count'] . ' views and ' . $row['comment_count'] . ' comments</span>';
+    echo '<span class="counts">' . $row['view_count'] . ' views, ' . $row['comment_count'] . ' comments</span>';
 //	echo '</a>';
     echo '</section></div>';
 }

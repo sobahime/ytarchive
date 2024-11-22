@@ -134,6 +134,28 @@ a {
     color: black;
     margin: 0;
 }
+.year_list {
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2em;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 100%;
+}
+.year_link {
+    backdrop-filter: blur(2px);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 4px;
+    text-align: center;
+    width: 14vw;
+    height: 26vh;
+    border: 2px solid black;
+    margin: 4px;
+}
 .thumbnail {
     text-align: center;
     width: 100%;
@@ -398,3 +420,20 @@ hr {
 .offline.show{
     background-color: rgb(255, 0, 0);
 } 
+.yearthumbnail {
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
+}
+.titleyear {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    left: 0;
+    font-size: 4vw;
+    text-shadow: .5vh .5vh 0px black;
+    background-color: rgba(0, 0, 0, .6);
+}
