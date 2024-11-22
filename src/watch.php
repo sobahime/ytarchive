@@ -12,7 +12,7 @@ require_once 'database.php';
     <body>
         <p class="back"><a href="#" onclick="history.back();">Back</a></p>
 <?php
-$sql = 'SELECT id, view_count, channel_id, title, epoch, channel, upload_date, channel_id, ext,
+$sql = 'SELECT id, view_count, channel_id, title, epoch, isonline, channel, upload_date, channel_id, ext,
             description
         FROM video
         WHERE id = :id;';
@@ -33,6 +33,7 @@ foreach($data as $row) {
     $epoch = $row['epoch'];
     $snapdate = new DateTime("@$epoch");
     echo '<h1 class="snapdate">snapshot date : ' . htmlspecialchars($snapdate->format('Y/m/d H:i:s')) . '</h1>';
+    echo '<h2 class="available">status : ' . ($row['isonline']?'still available on youtube':'deleted from youtube') . '</h2>';
     echo '<video controls poster="content/'
         . htmlspecialchars($row['id']) . '.webp">';
     echo '<source src="content/'

@@ -26,7 +26,8 @@ CREATE TABLE video (
     fps                     INT,
     aspect_ratio            FLOAT,
     ext                     TEXT,
-    epoch                   INT
+    epoch                   INT,
+    isonline                BOOLEAN
 );
 
 CREATE TABLE comment (

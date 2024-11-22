@@ -333,8 +333,20 @@ video {
     font-size: 1em;
     padding: 4px;
     width: fit-content;
+    margin: 0;
     margin-left: 50%;
     transform: translateX(-50%);
+}
+.available {
+    text-align: center;
+    background-color: black;
+    font-size: .8em;
+    width: fit-content;
+    margin: 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding: 4px;
+    margin-bottom: 4px;
 }
 hr {
     border: 1px solid black;
@@ -371,3 +383,6 @@ hr {
 .comment_metadata strong {
     font-size: 1.25em;
 }
+.offline.show{
+    background-color: rgb(255, 0, 0);
+} 

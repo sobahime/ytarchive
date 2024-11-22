@@ -35,7 +35,7 @@ require_once 'database.php';
 <div class="contenant">
 <div class="video_list">
 <?php
-$sql = 'SELECT id, title, channel, upload_date, channel_id
+$sql = 'SELECT id, title, channel, upload_date, isonline, channel_id
         FROM video;';
 $sth = $pdo->prepare($sql);
 $sth->execute();
@@ -51,7 +51,7 @@ foreach($data as $row) {
     $url_escaped = 'watch.php?v=' . htmlspecialchars($row['id']);
    // $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
     $url_channel_escaped = 'search.php?q=' . htmlspecialchars(urlencode('"' . $row['channel'] . '"')) . '&channel=on';
-    echo '<div class="video_link">';
+        echo '<div class="video_link' . ($row['isonline']?'':' offline') . '">';
     echo '<a href="' . $url_escaped . '">';
     echo '<img class="thumbnail" src="content/'
         . htmlspecialchars($row['id']) . '.webp"/>';
@@ -121,6 +121,11 @@ foreach($data as $row) {
                 <option value="descending">descending</option>
             </select>
             </form>
+<hr>
+<div class="highlighter">
+<input type="checkbox" id="showoffline"/>
+<label for="showoffline">highlight deleted videos</label>
+</div>
 </nav>
     <script>
         function transformScroll(event) {
@@ -134,6 +139,20 @@ foreach($data as $row) {
 
 var element = document.scrollingElement || document.documentElement;
 element.addEventListener('wheel', transformScroll);
+// deleted videos toggle
+
+const checkbox = document.getElementById('showoffline');
+const offlineElements = document.querySelectorAll('.offline');
+checkbox.addEventListener('change', function() {
+  // Toggle the 'show' class on all elements with class 'offline' based on checkbox state
+  offlineElements.forEach(element => {
+    if (checkbox.checked) {
+      element.classList.add('show'); // Show elements if checkbox is checked
+    } else {
+      element.classList.remove('show'); // Hide elements if checkbox is unchecked
+    }
+  });
+});
         </script>
     </body>
 </html>

@@ -69,7 +69,7 @@ if (sizeof($columns) != 0) {
         $sortorder = "DESC";
     }
     $query = "websearch_to_tsquery('english', :query)";
-    $sql = "SELECT id, title, channel, upload_date, channel_id, view_count, comment_count
+    $sql = "SELECT id, title, channel, upload_date, channel_id, view_count, comment_count, isonline
             FROM
                 video,
                 ts_rank($document, $query) rank
@@ -89,7 +89,7 @@ if (sizeof($columns) != 0) {
         $url_escaped = 'watch.php?v=' . htmlspecialchars($row['id']);
        // $url_channel_escaped = 'channel.php?channel_id=' . htmlspecialchars($row['channel_id']);
         $url_channel_escaped = 'search.php?q=' . htmlspecialchars(urlencode('"' . $row['channel'] . '"')) . '&channel=on';
-        echo '<div class="video_link">';
+        echo '<div class="video_link' . ($row['isonline']?'':' offline') . '">';
         echo '<a href="' . $url_escaped . '">';
         echo '<img class="thumbnail" src="content/'
             . htmlspecialchars($row['id']) . '.webp"/>';
@@ -214,6 +214,11 @@ $q = htmlspecialchars($q);
                 >descending</option>
             </select>
             </form>
+<hr>
+<div class="highlighter">
+<input type="checkbox" id="showoffline"/>
+<label for="showoffline">highlight deleted videos</label>
+</div>
 </nav>
     <script>
         function transformScroll(event) {
@@ -227,6 +232,21 @@ $q = htmlspecialchars($q);
 
 var element = document.scrollingElement || document.documentElement;
 element.addEventListener('wheel', transformScroll);
+
+// deleted videos toggle
+
+const checkbox = document.getElementById('showoffline');
+const offlineElements = document.querySelectorAll('.offline');
+checkbox.addEventListener('change', function() {
+  // Toggle the 'show' class on all elements with class 'offline' based on checkbox state
+  offlineElements.forEach(element => {
+    if (checkbox.checked) {
+      element.classList.add('show'); // Show elements if checkbox is checked
+    } else {
+      element.classList.remove('show'); // Hide elements if checkbox is unchecked
+    }
+  });
+});
         </script>
     </body>
 </html>
