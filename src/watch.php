@@ -12,7 +12,7 @@ require_once 'database.php';
     <body>
         <p class="back"><a href="#" onclick="history.back();">Back</a></p>
 <?php
-$sql = 'SELECT id, view_count, channel_id, title, epoch, isonline, channel, upload_date, channel_id, ext,
+$sql = 'SELECT id, view_count, channel_id, title, epoch, isonline, channel, upload_date, channel_id, ext, like_count,
             description
         FROM video
         WHERE id = :id;';
@@ -33,7 +33,7 @@ foreach($data as $row) {
     $epoch = $row['epoch'];
     $snapdate = new DateTime("@$epoch");
     echo '<h1 class="snapdate">snapshot date : ' . htmlspecialchars($snapdate->format('Y/m/d H:i:s')) . '</h1>';
-    echo '<h2 class="available">status : ' . ($row['isonline']?'still available on youtube':'deleted from youtube') . '</h2>';
+    echo '<h2 class="available">status : ' . ($row['isonline']?'still available on <a class="ytlink" target="_blank" href="https://youtube.com/watch?v=' . htmlspecialchars($row['id']) . '">youtube</a>':'deleted from <a class="ytlink" target="_blank" href="https://youtube.com/watch?v=' . htmlspecialchars($row['id']) . '">youtube</a>') . '</h2>';
     echo '<video controls poster="content/'
         . htmlspecialchars($row['id']) . '.webp">';
     echo '<source src="content/'
@@ -44,7 +44,7 @@ foreach($data as $row) {
     echo '<div class="video_metadata">';
     echo '<strong class="video_title">' . htmlspecialchars($row['title']) . '</strong><br/>';
     echo '<hr class="videobar">';
-    echo '<p class="view_count">' . htmlspecialchars($row['view_count']) . ' views</p>';
+    echo '<p class="view_count">' . htmlspecialchars($row['view_count']) . ' views, ' . htmlspecialchars($row['like_count']) . ' likes</p>';
     echo '<div class="channelinfo">';
     echo '<img class="channelpp" src="content/' . htmlspecialchars($row['channel_id']) . '.webp" alt="' . htmlspecialchars($row['channel']) . '"/>';
     echo '<div><span class="watch_date"><a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . '</a>, ' . htmlspecialchars($date) . '</span><hr class="channelbar"></div>';

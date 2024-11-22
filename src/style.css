@@ -187,6 +187,18 @@ a {
     font-size: 0.8em;
     color: black;
 }
+.browsedate {
+    position: fixed;
+    right: 4px;
+    bottom: 4px;
+}
+.counts {
+    font-size: .8em;
+    color: black;
+    position: fixed;
+    left: 4px;
+    bottom: 4px;
+}
 .titre {
     font-family: "Times New Roman", "Yu Mincho", serif;
     width: 100%;

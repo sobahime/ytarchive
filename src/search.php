@@ -98,7 +98,8 @@ if (sizeof($columns) != 0) {
         echo '<section class="video_link_meta">';
         echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['title']) . "</strong><br/></a>";
         echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
-        echo '<span class="date">' . htmlspecialchars($date) . '</span>';
+        echo '<span class="date browsedate">' . htmlspecialchars($date) . '</span>';
+        echo '<span class="counts">' . $row['view_count'] . ' views and ' . $row['comment_count'] . ' comments</span>';
     //	echo '</a>';
         echo '</section></div>';
     }
@@ -201,7 +202,7 @@ $q = htmlspecialchars($q);
                             echo ($_REQUEST['sortby'] == 'commentscount') ? 'checked' : '';
                         ?>
                     />
-                    <label for="commentscount">comments count</label>
+                    <label for="commentscount">comment count</label>
                 </div>
             </div>
             <label for="order"><h1 class="advancedtitle">order</h1></label>

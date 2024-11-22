@@ -75,7 +75,7 @@ require_once 'database.php';
                 </div>
                 <div>
                     <input type="radio" id="commentscount" name="sortby" value="commentscount" />
-                    <label for="commentscount">comments count</label>
+                    <label for="commentscount">comment count</label>
                 </div>
             </div>
             <label for="order"><h1 class="advancedtitle">order</h1></label>

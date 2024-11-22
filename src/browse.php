@@ -35,7 +35,7 @@ require_once 'database.php';
 <div class="contenant">
 <div class="video_list">
 <?php
-$sql = 'SELECT id, title, channel, upload_date, isonline, channel_id
+$sql = 'SELECT id, title, channel, upload_date, isonline, channel_id, view_count, comment_count
         FROM video;';
 $sth = $pdo->prepare($sql);
 $sth->execute();
@@ -59,8 +59,9 @@ foreach($data as $row) {
 //	echo '<b class="video_link_meta" href="' . $url_escaped . '">';
     echo '<section class="video_link_meta">';
     echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['title']) . "</strong><br/></a>";
-    echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
-    echo '<span class="date">' . htmlspecialchars($date) . '</span>';
+    echo '<a class="channel " href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
+    echo '<span class="date browsedate">' . htmlspecialchars($date) . '</span>';
+    echo '<span class="counts">' . $row['view_count'] . ' views and ' . $row['comment_count'] . ' comments</span>';
 //	echo '</a>';
     echo '</section></div>';
 }
@@ -91,6 +92,7 @@ foreach($data as $row) {
                     <input type="checkbox" id="description" name="description" />
                     <label for="description">description</label>
                 </div>
+<!---
                 <div>
                     <input type="checkbox" id="comments" name="comments" />
                     <label for="comments">comments</label>
@@ -99,6 +101,7 @@ foreach($data as $row) {
                     <input type="checkbox" id="date" name="date" />
                     <label for="date">date (yyyy/mm/dd)</label>
                 </div>
+--->
 </div>
             <h1 class="advancedtitle">sort by</h1>
             <div class="checkboxes navigo">
@@ -112,7 +115,7 @@ foreach($data as $row) {
                 </div>
                 <div>
                     <input type="radio" id="commentscount" name="sortby" value="commentscount" />
-                    <label for="commentscount">comments count</label>
+                    <label for="commentscount">comment count</label>
                 </div>
 </div>
             <label for="order"><h1 class="advancedtitle">order</h1></label>
