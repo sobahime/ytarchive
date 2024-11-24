@@ -79,7 +79,7 @@ require_once 'database.php';
                 </div>
             </div>
             <label for="order"><h1 class="advancedtitle">order</h1></label>
-            <select name="order" id="order">
+            <select class="boutonmignon" name="order" id="order">
                 <option value="ascending">ascending</option>
                 <option value="descending" selected>descending</option>
             </select>

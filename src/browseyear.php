@@ -7,7 +7,8 @@ require_once 'database.php';
         <meta charset="utf-8">
         <title>media</title>
         <link rel="stylesheet" href="style.css" />
-        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="icon" type="image/png" href="/favicon.png"/>
+        <script src="./bundle.js"></script>
         <style type="text/css">
            body {
             background-image: url(noisebrowse.gif);
@@ -57,7 +58,8 @@ if (isset($_REQUEST["year"])) {
         echo '<section class="video_link_meta">';
         echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['title']) . "</strong><br/></a>";
         echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
-        echo '<span class="date">' . htmlspecialchars($date) . '</span>';
+        echo '<span class="date browsedate">' . htmlspecialchars($date) . '</span>';
+        echo '<span class="counts">' . $row['view_count'] . ' views, ' . $row['comment_count'] . ' comments</span>';
     //	echo '</a>';
         echo '</section></div>';
     }
@@ -73,6 +75,8 @@ if (isset($_REQUEST["year"])) {
     $sth->execute();
     $data = $sth->fetchAll();
 
+
+
     foreach($data as $row) {
         $date = $row['upload_date'];
 
@@ -82,9 +86,26 @@ if (isset($_REQUEST["year"])) {
         
        // echo '<a href="' . $url_escaped . '">';
         
-        echo '<img class="yearthumbnail" src="years/'
-            . htmlspecialchars($row['upload_year']) . '.jpg"/>';
+        //echo '<img class="yearthumbnail" src="years/'
+        //    . htmlspecialchars($row['upload_year']) . '.jpg"/>';
        // echo '</a>';
+        $sql2 = "
+            SELECT id FROM video 
+            WHERE SUBSTRING(upload_date, 0, 5) = :year
+            ORDER BY RANDOM()
+            LIMIT 25";
+    $sth2 = $pdo->prepare($sql2);
+    $sth2->execute(['year' => $row['upload_year']]);
+    $data2 = $sth2->fetchAll();
+    //echo '<pre>';
+    //print_r($data2);
+    //echo '</pre>';
+        echo '<div class="yearthumbnail">';
+    foreach($data2 as $row2) {
+        echo '<img class="collage" src="thumbs/' . htmlspecialchars($row2['id']) . '.webp"/>';
+    }
+       // echo '<img class="collage" src="thumbs/';
+        echo '</div>';
         echo '<a class="titleyear" href="' . $url_escaped . '">' . htmlspecialchars($row['upload_year']) . "</a>";
     //	echo '</a>';
         echo '</div>';

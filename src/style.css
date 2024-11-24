@@ -143,6 +143,7 @@ a {
     padding-top: 0;
     padding-bottom: 0;
     height: 100%;
+    justify-content: center;
 }
 .year_link {
     backdrop-filter: blur(2px);
@@ -160,7 +161,7 @@ a {
     text-align: center;
     width: 100%;
     aspect-ratio: 16 / 9;
-	object-fit: contain;
+	object-fit: cover;
 }
 .video_link_meta {
     display: block;
@@ -421,7 +422,8 @@ hr {
     background-color: rgb(255, 0, 0);
 } 
 .yearthumbnail {
-    object-fit: fill;
+    display: flex;
+    flex-wrap: wrap;
     height: 100%;
     width: 100%;
 }
@@ -436,4 +438,11 @@ hr {
     font-size: 4vw;
     text-shadow: .5vh .5vh 0px black;
     background-color: rgba(0, 0, 0, .6);
+}
+.collage {
+    margin: 0;
+    padding: 0;
+    height: 20%;
+    width: 20%;
+
 }
