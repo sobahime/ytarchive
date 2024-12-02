@@ -96,8 +96,8 @@ if (sizeof($columns) != 0) {
         echo '</a>';
     //	echo '<b class="video_link_meta" href="' . $url_escaped . '">';
         echo '<section class="video_link_meta">';
-        echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['title']) . "</strong><br/></a>";
-        echo '<a class="channel" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "</a><br/>";
+        echo '<a class="title" href="' . $url_escaped . '"><strong>' . htmlspecialchars($row['title']) . "</strong></a>";
+        echo '<a class="channellist" href="' . $url_channel_escaped . '">' . htmlspecialchars($row['channel']) . "<hr class='channelbar'/></a>";
         echo '<span class="date browsedate">' . htmlspecialchars($date) . '</span>';
         echo '<span class="counts">' . $row['view_count'] . ' views, ' . $row['comment_count'] . ' comments</span>';
     //	echo '</a>';

@@ -48,7 +48,7 @@ foreach($data as $row) {
         . htmlspecialchars($row['ext']) .'" />';
     echo '</video>';
     echo '<div class="video_metadata">';
-    echo '<strong class="video_title">' . htmlspecialchars($row['title']) . '</strong><br/>';
+    echo '<strong class="video_title">' . htmlspecialchars($row['title']) . '</strong>';
     echo '<hr class="videobar">';
     echo '<p class="view_count">' . htmlspecialchars($row['view_count']) . ' views, ' . htmlspecialchars($row['like_count']) . ' likes</p>';
     echo '<div class="channelinfo">';
