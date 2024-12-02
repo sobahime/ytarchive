@@ -412,6 +412,9 @@ a.view_comments {
     bottom: 0;
     font-size: 2em;
 }
+.morerandom {
+    right: 1em;
+}
 video {
     height: 70vh;
     display: block;

@@ -18,11 +18,17 @@ require_once 'database.php';
     <h1 class="titretexte B">YTPMV/音MAD archive</h1>
 </div>
 <p class="toabout"><a href="about.php">about</a></p>
+<?php
+    $stmt = $pdo->query("SELECT id FROM video ORDER BY RANDOM() LIMIT 1");
+    $randomRow = $stmt->fetch(PDO::FETCH_ASSOC);
+    $randomId = $randomRow['id'];
+?>
 <div class="menu">
     <div class="menuhead">
         <a href="browse.php">browse</a>
         <a href="browseyear.php">by year</a>
         <a href="browsechannel.php">channels</a>
+        <a href="watchrandom.php?v=<?php echo htmlspecialchars($randomId);?>">random</a>
     </div>
     <form action="search.php" method="get">
         <div class="mainsearch">
