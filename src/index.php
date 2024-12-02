@@ -17,6 +17,7 @@ require_once 'database.php';
     <h1 class="titretexte G">YTPMV/音MAD archive</h1>
     <h1 class="titretexte B">YTPMV/音MAD archive</h1>
 </div>
+<p class="toabout"><a href="about.php">about</a></p>
 <div class="menu">
     <div class="menuhead">
         <a href="browse.php">browse</a>

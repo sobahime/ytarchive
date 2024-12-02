@@ -10,7 +10,7 @@ require_once 'database.php';
         <link rel="icon" type="image/png" href="/favicon.png">
     </head>
     <body>
-        <p class="back"><a href="#" onclick="history.back();">Back</a></p>
+        <p class="back"><a href="#" onclick="if (history.length > 1) {history.back();} else {window.location.href = '/';}">Back</a></p>
 <?php
 $sql = 'SELECT id, view_count, channel_id, title, epoch, isonline, channel, upload_date, channel_id, ext, like_count,
             description

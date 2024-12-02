@@ -12,6 +12,81 @@ body {
     color: white;
     height: 95%;
 }
+.about {
+    position: relative;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid black;
+    width: 50%;
+    background-color: white;
+    color: black;
+    padding: 4px;
+    height: fit-content;
+    margin-bottom: 20%;
+}
+.about>h1 {
+    text-align: center;
+    font-size: 2em;
+}
+.about>h2 {
+    text-indent: 4em;
+    font-size: 1.5em;
+}
+.about>h3 {
+    text-indent: 2em;
+    font-size: 1em;
+    font-weight: normal;
+    margin-bottom: 3em;
+}
+.about>p {
+    text-align: justify;
+    text-indent: 2em each-line;
+    line-height: 1.5em;
+}
+br {
+    display: block;
+    margin: 2em;
+}
+.mots {
+    color: white;
+    background-color: black;
+    padding: 4px;
+    font-size: .1em;
+    margin-left: 2em;
+    margin-right: 2em;
+    transition: font-size 2s ease-in-out;
+}
+.mots:hover {
+    transition: font-size 2s ease-in-out;
+    font-size: .8em;
+}
+p.adroite {
+    text-align: right;
+    text-indent: 0;
+    margin-right: 4em;
+}
+p.agauche {
+    text-align: left;
+    text-indent: 0;
+    margin-left: 4em;
+}
+.github {
+    color: black;
+    text-decoration: underline;
+}
+.titreabout {
+    font-size: 1vw;
+    margin-top: 2vh;
+    position: absolute;
+    z-index: 4;
+}
+.fgpony {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 .bgpony {
     position: fixed;
     height: 90vh;
@@ -109,6 +184,12 @@ div.checkboxes {
 a {
 	color: white;
 	text-decoration: none;
+}
+.about>a {
+    color: black;
+}
+.about>a:visited {
+    color: black;
 }
 .video_list {
 	display: flex;
@@ -321,6 +402,15 @@ a.view_comments {
     background-color: black;
     display: inline;
     padding: 4px;
+}
+.toabout {
+    position: fixed;
+    background-color: black;
+    display: inline;
+    padding: 4px;
+    right: 2em;
+    bottom: 0;
+    font-size: 2em;
 }
 video {
     height: 70vh;
